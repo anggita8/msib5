@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas 3 JS</title>
+</head>
+<style>
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th{
+      background-color: rgb(113, 241, 8);
+    }
+    tr:nth-child(odd) {
+      background-color: aqua;
+    }
+    tr:nth-child(even) {
+      background-color: yellow;
+    }
+    </style>
+<body>
+    <body>
+
+        <table>
+          <thead>
+            <tr>
+              <th>Nama Pegawai</th>
+              <th>Jabatan</th>
+              <th>Gapok</th>
+              <th>Tunjangan Jabatan</th>
+              <th>Tunjangan Kesehatan</th>
+              <th>Gaji Kotor</th>
+              <th>Agama</th>
+              <th>Zakat Profesi</th>
+              <th>Take Home Pay</th>
+            </tr>
+          </thead>
+          <tbody>
+            <script>
+              for (let i = 1; i <= 10; i++) {
+                const namaPegawai = `Pegawai${i}`;
+                let jabatan = "";
+                let gapok = " ";
+                
+                if (i <= 2) {jabatan = "Manager";} 
+                else if (i <= 5) {jabatan = "Asisten Manager";} 
+                else if (i <= 8) {jabatan = "Supervisor";} 
+                else {jabatan = "Staff";}
+
+                switch(jabatan){
+                    case "Manager" : gapok = 15000000; break;
+                    case "Asisten Manager" : gapok = 10000000; break;
+                    case "Supervisor" : gapok = 7000000; break;
+                    case "Staff" : gapok = 4000000; break;
+                    default : gapok = " "; break;
+                }
+                
+                const tunjanganJabatan = gapok * 0.2;
+                const tunjanganKesehatan = gapok * 0.1;
+                const gajiKotor = gapok + tunjanganJabatan + tunjanganKesehatan;
+                
+                const agama = (i % 2 === 1) ? "Muslim" : "Non Muslim";
+                
+                let zakatProfesi = 0;
+                if (agama === "Muslim" && gajiKotor >= 7000000) {
+                  zakatProfesi = gajiKotor * 0.025;
+                }
+                
+                const takeHomePay = gajiKotor - zakatProfesi;
+                
+                document.write(`
+                  <tr>
+                    <td>${namaPegawai}</td>
+                    <td>${jabatan}</td>
+                    <td>${gapok}</td>
+                    <td>${tunjanganJabatan}</td>
+                    <td>${tunjanganKesehatan}</td>
+                    <td>${gajiKotor}</td>
+                    <td>${agama}</td>
+                    <td>${zakatProfesi}</td>
+                    <td>${takeHomePay}</td>
+                  </tr>
+                `);
+              }
+            </script>
+          </tbody>
+        </table>
+</body>
+</html>
